@@ -1,4 +1,9 @@
 
+# TileExtrudeWebpackPlugin
+
+[![npm](https://img.shields.io/npm/v/tile-extrude-webpack-plugin.svg)](https://www.npmjs.com/package/tile-extrude-webpack-plugin)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/laineus/tile-extrude-webpack-plugin/blob/master/LICENSE)
+
 A Webpack plugin to extrude tilesets automatically with [tile-extruder](https://github.com/sporadic-labs/tile-extruder).
 
 It will be re-extruded automatically when added or modified images while webpack is watching.
