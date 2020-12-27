@@ -23,10 +23,8 @@ module.exports = class {
     compiler.hooks.afterEnvironment.tap('TileSet', () => {
       console.log('TileExtrudeWebpackPlugin: Extruding all files...')
       const files = fs.readdirSync(this.inputDir).filter(file => file.endsWith('.png'))
-      const promises = files.map(file => this.extrude(file))
-      Promise.all(promises).then(() => {
-        if (compiler.options.mode === 'development') this.watch()
-      })
+      files.forEach(file => this.extrude(file))
+      if (compiler.options.mode === 'development') this.watch()
     })
   }
   watch () {
