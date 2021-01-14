@@ -2,11 +2,15 @@
   "name": "tile-extrude-webpack-plugin",
   "version": "1.0.1",
   "description": "Extrude tilesets automatically",
-  "main": "index.js",
+  "main": "src/index.js",
+  "bin": {
+    "tile-extrude": "bin/index"
+  },
   "repository": "https://github.com/laineus/tile-extrude-webpack-plugin",
   "author": "Laineus",
   "license": "MIT",
   "dependencies": {
+    "commander": "^6.2.1",
     "imagemin": "^7.0.1",
     "imagemin-pngquant": "^9.0.0",
     "tile-extruder": "^2.0.6"
