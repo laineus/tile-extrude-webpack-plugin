@@ -1,12 +1,7 @@
 const path = require('path')
 const fs = require('fs')
-const { extrudeTilesetToBuffer } = require('tile-extruder')
-const imagemin = require('imagemin')
-const imageminPngquant = require('imagemin-pngquant')
+const extrude = require('./extrude')
 
-const plugins = [
-  imageminPngquant()
-]
 const defaultSettings = {
   minify: true
 }
@@ -19,7 +14,7 @@ module.exports = class {
     this.projectRoot = compiler.context
     this.inputDir = path.resolve(this.projectRoot, this.settings.input)
     this.outputDir = path.resolve(this.projectRoot, this.settings.output)
-    if (this.inputDir === this.outputDir) throw new Error('[Error] Input dir and output dir should not be same.')
+    if (this.inputDir === this.outputDir) throw new Error('[Error] Input dir and output dir must not be same.')
     compiler.hooks.afterEnvironment.tap('TileSet', () => {
       console.log('TileExtrudeWebpackPlugin: Extruding all files...')
       const files = fs.readdirSync(this.inputDir).filter(file => file.endsWith('.png'))
@@ -44,11 +39,6 @@ module.exports = class {
     }, 1000)
   }
   extrude (file) {
-    const size = this.settings.size
-    return extrudeTilesetToBuffer(size, size, path.join(this.inputDir, file)).then(buffer => {
-      return imagemin.buffer(buffer, this.settings.minify ? { plugins } : {}).then(minifiedBuffer => {
-        return fs.writeFileSync(path.join(this.outputDir, file), minifiedBuffer)
-      })
-    })
+    return extrude(path.join(this.inputDir, file), this.outputDir, this.settings.size, this.settings.minify)
   }
 }
