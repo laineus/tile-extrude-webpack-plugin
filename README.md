@@ -1,8 +1,8 @@
 
 # TileExtrudeWebpackPlugin
 
-[![npm](https://img.shields.io/npm/v/tile-extrude-webpack-plugin.svg)](https://www.npmjs.com/package/tile-extrude-webpack-plugin)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/laineus/tile-extrude-webpack-plugin/blob/master/LICENSE)
+[![npm](https://img.shields.io/npm/v/tile-extrude-webpack-plugin.svg?style=for-the-badge)](https://www.npmjs.com/package/tile-extrude-webpack-plugin)
+[![license](https://img.shields.io/github/license/laineus/tile-extrude-webpack-plugin.svg?style=for-the-badge&color=blue)](https://github.com/laineus/tile-extrude-webpack-plugin/blob/master/LICENSE)
 
 A Webpack plugin to extrude tilesets automatically with [tile-extruder](https://github.com/sporadic-labs/tile-extruder).
 
@@ -46,6 +46,27 @@ Options:
 |input|Input directory. Original images should be here.|
 |output|Output directory. Extruded images will be here.|
 |minify|Minify png when extrude. (default is true)|
+
+# CLI
+
+```
+$ tile-extrude --input <input dir> --output <output dir> --size <tile size> --minify
+```
+
+or
+
+```
+$ tile-extrude --config <path to config>
+```
+
+```js
+module.exports = {
+  size: 32,
+  input: './input',
+  output: './output',
+  minify: true
+}
+```
 
 # Requirements
 
